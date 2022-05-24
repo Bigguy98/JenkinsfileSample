@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Building') {
             steps {
-                echo "Building app..."
+                echo "Building app ${params.APP_NAME}"
             }  
         }
         stage('Test') {
@@ -18,12 +18,12 @@ pipeline {
                 }
             }
             steps {
-                echo "Testing app..."
+                echo "Testing app ${params.APP_NAME}"
             }
         }
         stage('Deploy') {
             steps {
-                echo "Deploying app..."
+                echo "Deploying app ${params.APP_NAME} version ${params.VERSION}"
             }
         }
 
