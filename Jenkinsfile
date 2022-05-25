@@ -6,7 +6,7 @@ pipeline {
         booleanParam(name: 'NEED_TEST', defaultValue: true, description: 'Check if this deployment need to be test')
     }
 
-    enviroment {
+    environment {
         ENV = 'test'
         BUILD_TOOL = 'mvn'
     }
