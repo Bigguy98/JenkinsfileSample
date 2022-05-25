@@ -1,5 +1,5 @@
 def numArr = [1,2,5,6,9]
-def groovyScript = load "script.groovy"
+def groovyScript
 
 pipeline {
     agent any 
@@ -15,6 +15,11 @@ pipeline {
     }
 
     stages {
+        stage ('Init') {
+            steps {
+                groovyScript = load "script.groovy"
+            }
+        }
         stage('Building') {
             steps {
                 groovyScript.buildingApp()
