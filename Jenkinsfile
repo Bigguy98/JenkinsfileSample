@@ -17,12 +17,16 @@ pipeline {
     stages {
         stage ('Init') {
             steps {
-                groovyScript = load "script.groovy"
+                script {
+                    groovyScript = load "script.groovy"
+                }
             }
         }
         stage('Building') {
             steps {
-                groovyScript.buildingApp()
+                script {
+                    groovyScript.buildingApp()
+                }
             }  
         }
         stage('Test') {
@@ -45,7 +49,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                groovyScript.deployApp()
+                script {
+                    groovyScript.deployApp()
+                }
             }
         }
 
