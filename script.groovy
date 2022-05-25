@@ -1,5 +1,9 @@
-def exampleMethod() {
-    //do something
+def exampleMethod(numArr) {
+    for(i in numArr) {
+        echo "Counting to number ${i}"
+    }
+    // groovy syntax for printing text
+    println "hello"
 }
 def otherExampleMethod() {
     //do something else
