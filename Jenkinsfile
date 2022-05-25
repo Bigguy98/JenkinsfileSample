@@ -5,10 +5,16 @@ pipeline {
         choice(name: 'VERSION', choices: ['v1.0', 'v1.1', 'v1.2'], description: 'App version')
         booleanParam(name: 'NEED_TEST', defaultValue: true, description: 'Check if this deployment need to be test')
     }
+
+    enviroment {
+        ENV = 'test'
+        BUILD_TOOL = 'mvn'
+    }
+
     stages {
         stage('Building') {
             steps {
-                echo "Building app ${params.APP_NAME}"
+                echo "Building app ${params.APP_NAME} with ${BUILD_TOOL}"
             }  
         }
         stage('Test') {
@@ -23,7 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo "Deploying app ${params.APP_NAME} version ${params.VERSION}"
+                echo "Deploying app ${params.APP_NAME} version ${params.VERSION} to env ${ENV}"
             }
         }
 
