@@ -1,3 +1,5 @@
+def numArr = [1,2,5,6,9]
+
 pipeline {
     agent any 
     parameters {
@@ -25,6 +27,14 @@ pipeline {
             }
             steps {
                 echo "Testing app ${params.APP_NAME}"
+                // include a block of Scripted pipeline, which is Groovy code   
+                script {
+                    for(i in numArr) {
+                        echo "Counting to number ${i}"
+                    }
+                    // groovy syntax for printing text
+                    println "hello"
+                }
             }
         }
         stage('Deploy') {
