@@ -1,4 +1,5 @@
 def numArr = [1,2,5,6,9]
+def groovyScript = load "script.groovy"
 
 pipeline {
     agent any 
@@ -16,7 +17,7 @@ pipeline {
     stages {
         stage('Building') {
             steps {
-                echo "Building app ${params.APP_NAME} with ${BUILD_TOOL}"
+                groovyScript.buildingApp()
             }  
         }
         stage('Test') {
@@ -39,7 +40,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo "Deploying app ${params.APP_NAME} version ${params.VERSION} to env ${ENV}"
+                groovyScript.deployApp()
             }
         }
 
