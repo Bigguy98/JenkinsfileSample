@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    /** A section defining tools to auto-install and put on the PATH. This is ignored if agent none is specified.
+        Supported built-in tools: ant, git, mvn, jdk
+    **/
+
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+        }
+    }
+}
